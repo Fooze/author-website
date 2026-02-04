@@ -341,53 +341,52 @@
       Subscribe to receive updates on new releases, exclusive content, and behind-the-scenes insights from the Seeds of Chaos universe.
     </p>
 
-    <!-- Hidden iframe so submission doesn't open a new tab or redirect -->
-    <iframe name="ml_hidden_iframe" class="hidden"></iframe>
+    <!-- Add this wrapper so MailerLite webforms.min.js will bind to the form -->
+    <div class="ml-subscribe-form ml-subscribe-form-36683017">
+      <!-- Hidden iframe so submission doesn't open a new tab or redirect -->
+      <iframe name="ml_hidden_iframe" class="hidden"></iframe>
 
-    <form
-      id="newsletter-form"
-      class="ml-block-form flex flex-col gap-4 max-w-md mx-auto"
-      action="https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/subscribe"
-      method="post"
-      target="_blank"
-      data-code=""
-    >
-      <!-- MailerLite required hidden fields -->
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
-
-      <!-- Name (above email, same styling) -->
-      <label for="name-input" class="sr-only">Name</label>
-      <input
-        type="text"
-        id="name-input"
-        name="fields[name]"
-        placeholder="Enter your name"
-        autocomplete="given-name"
-        class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
+      <form
+        id="newsletter-form"
+        class="ml-block-form flex flex-col gap-4 max-w-md mx-auto"
+        action="https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/subscribe"
+        method="post"
+        target="ml_hidden_iframe"
+        data-code=""
       >
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
 
-      <!-- Email -->
-      <label for="email-input" class="sr-only">Email address</label>
-      <input
-        type="email"
-        id="email-input"
-        name="fields[email]"
-        placeholder="Enter your email"
-        required
-        autocomplete="email"
-        class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
-      >
+        <label for="name-input" class="sr-only">Name</label>
+        <input
+          type="text"
+          id="name-input"
+          name="fields[name]"
+          placeholder="Enter your name"
+          autocomplete="given-name"
+          class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
+        >
 
-      <!-- Button -->
-      <button
-        type="submit"
-        id="subscribe-btn"
-        class="btn-primary px-8 py-4 rounded-lg font-semibold text-white whitespace-nowrap"
-      >
-        Subscribe
-      </button>
-    </form>
+        <label for="email-input" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="email-input"
+          name="fields[email]"
+          placeholder="Enter your email"
+          required
+          autocomplete="email"
+          class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
+        >
+
+        <button
+          type="submit"
+          id="subscribe-btn"
+          class="btn-primary px-8 py-4 rounded-lg font-semibold text-white whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
 
     <div id="form-message" class="mt-4 text-sm hidden"></div>
     <p class="text-gray-600 text-sm mt-6">🔒 Your email is safe with me. Unsubscribe anytime.</p>
@@ -395,14 +394,11 @@
 </section>
 
 <script>
-  // MailerLite calls this after a successful submission.
   function ml_webform_success_36683017() {
     const msg = document.getElementById("form-message");
     const btn = document.getElementById("subscribe-btn");
 
-    msg.classList.remove("hidden");
-    msg.classList.remove("text-gray-400");
-    msg.classList.remove("text-red-400");
+    msg.classList.remove("hidden", "text-gray-400", "text-red-400");
     msg.classList.add("text-teal-200");
     msg.textContent = "Thanks! Please check your inbox to confirm.";
 
@@ -416,12 +412,9 @@
     const btn = document.getElementById("subscribe-btn");
 
     form.addEventListener("submit", function () {
-      // If invalid, browser validation UI will appear and we do nothing else.
       if (!form.checkValidity()) return;
 
-      msg.classList.remove("hidden");
-      msg.classList.remove("text-teal-200");
-      msg.classList.remove("text-red-400");
+      msg.classList.remove("hidden", "text-teal-200", "text-red-400");
       msg.classList.add("text-gray-400");
       msg.textContent = "Submitting...";
 
@@ -430,6 +423,12 @@
     });
   })();
 </script>
+
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/takel");
+</script>
+
 
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 <script>
