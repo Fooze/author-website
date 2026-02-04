@@ -417,22 +417,28 @@
     btn.classList.remove("opacity-70", "cursor-not-allowed");
   }
 
-  (function () {
-    const form = document.getElementById("newsletter-form");
-    const msg = document.getElementById("form-message");
-    const btn = document.getElementById("subscribe-btn");
+(function () {
+  const form = document.getElementById("newsletter-form");
+  const msg = document.getElementById("form-message");
+  const btn = document.getElementById("subscribe-btn");
 
-    form.addEventListener("submit", function () {
-      if (!form.checkValidity()) return;
+  form.addEventListener("submit", function () {
+    if (!form.checkValidity()) return;
 
-      msg.classList.remove("hidden", "text-teal-200", "text-red-400");
-      msg.classList.add("text-gray-400");
-      msg.textContent = "Submitting...";
+    const startedAt = Date.now();
+    setTimeout(() => {
+      if (Date.now() - startedAt >= 6000 && msg.textContent === "Submitting...") {
+        msg.classList.remove("text-gray-400", "text-teal-200");
+        msg.classList.add("text-red-400");
+        msg.textContent =
+          "Looks like something blocked the signup request. Please try a different browser or disable ad blockers for this site.";
 
-      btn.disabled = true;
-      btn.classList.add("opacity-70", "cursor-not-allowed");
-    });
-  })();
+        btn.disabled = false;
+        btn.classList.remove("opacity-70", "cursor-not-allowed");
+      }
+    }, 6500);
+  });
+})();
 </script>
 
 <!-- MailerLite engine (NO styling, NO popups) -->
