@@ -332,18 +332,22 @@
   <div class="max-w-2xl mx-auto text-center">
     <div class="mb-8">
       <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
       </svg>
     </div>
 
-    <h2 id="newsletter-heading" class="font-display text-4xl md:text-5xl text-teal-200 mb-4">Stay Connected</h2>
+    <h2 id="newsletter-heading" class="font-display text-4xl md:text-5xl text-teal-200 mb-4">
+      Stay Connected
+    </h2>
     <p id="newsletter-subtext" class="text-gray-400 text-lg mb-8">
       Subscribe to receive updates on new releases, exclusive content, and behind-the-scenes insights from the Seeds of Chaos universe.
     </p>
 
-    <!-- Add this wrapper so MailerLite webforms.min.js will bind to the form -->
-    <div class="ml-subscribe-form ml-subscribe-form-36683017">
-      <!-- Hidden iframe so submission doesn't open a new tab or redirect -->
+    <!-- MailerLite REQUIRED wrapper -->
+    <div id="mlb2-36683017" class="ml-subscribe-form ml-subscribe-form-36683017">
+
+      <!-- Hidden iframe prevents redirect -->
       <iframe name="ml_hidden_iframe" class="hidden"></iframe>
 
       <form
@@ -354,9 +358,11 @@
         target="ml_hidden_iframe"
         data-code=""
       >
+        <!-- MailerLite required hidden fields -->
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
 
+        <!-- Name -->
         <label for="name-input" class="sr-only">Name</label>
         <input
           type="text"
@@ -367,6 +373,7 @@
           class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
         >
 
+        <!-- Email -->
         <label for="email-input" class="sr-only">Email address</label>
         <input
           type="email"
@@ -378,6 +385,7 @@
           class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
         >
 
+        <!-- Button -->
         <button
           type="submit"
           id="subscribe-btn"
@@ -389,11 +397,14 @@
     </div>
 
     <div id="form-message" class="mt-4 text-sm hidden"></div>
-    <p class="text-gray-600 text-sm mt-6">🔒 Your email is safe with me. Unsubscribe anytime.</p>
+    <p class="text-gray-600 text-sm mt-6">
+      🔒 Your email is safe with me. Unsubscribe anytime.
+    </p>
   </div>
 </section>
 
 <script>
+  // Called ONLY when MailerLite confirms success
   function ml_webform_success_36683017() {
     const msg = document.getElementById("form-message");
     const btn = document.getElementById("subscribe-btn");
@@ -424,18 +435,16 @@
   })();
 </script>
 
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
-<script>
-  fetch("https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/takel");
+<!-- MailerLite engine (NO styling, NO popups) -->
+<script
+  src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+  type="text/javascript">
 </script>
 
-
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 <script>
-  // From your original embed snippet (keep it)
+  // Initialisation ping from your original embed
   fetch("https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/takel");
 </script>
-
 
   <div id="purchase-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background: rgba(0, 0, 0, 0.8);">
    <div class="card-glow rounded-2xl p-8 max-w-md w-full relative" style="background: linear-gradient(180deg, #1e1e2f 0%, #151520 100%);">
