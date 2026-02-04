@@ -328,12 +328,11 @@
   
   <div class="section-divider max-w-4xl mx-auto"></div>
   
-  <section id="newsletter" class="py-20 px-6 relative z-10">
+<section id="newsletter" class="py-20 px-6 relative z-10">
   <div class="max-w-2xl mx-auto text-center">
     <div class="mb-8">
       <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
       </svg>
     </div>
 
@@ -347,10 +346,11 @@
 
     <form
       id="newsletter-form"
-      class="flex flex-col gap-4 max-w-md mx-auto"
+      class="ml-block-form flex flex-col gap-4 max-w-md mx-auto"
       action="https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/subscribe"
       method="post"
       target="ml_hidden_iframe"
+      data-code=""
     >
       <!-- MailerLite required hidden fields -->
       <input type="hidden" name="ml-submit" value="1">
@@ -379,7 +379,7 @@
         class="input-field px-6 py-4 rounded-lg text-white placeholder-gray-500 font-medium"
       >
 
-      <!-- Button (keep your styling, full width is nice in stacked layout) -->
+      <!-- Button -->
       <button
         type="submit"
         id="subscribe-btn"
@@ -395,32 +395,48 @@
 </section>
 
 <script>
+  // MailerLite calls this after a successful submission.
+  function ml_webform_success_36683017() {
+    const msg = document.getElementById("form-message");
+    const btn = document.getElementById("subscribe-btn");
+
+    msg.classList.remove("hidden");
+    msg.classList.remove("text-gray-400");
+    msg.classList.remove("text-red-400");
+    msg.classList.add("text-teal-200");
+    msg.textContent = "Thanks! Please check your inbox to confirm.";
+
+    btn.disabled = false;
+    btn.classList.remove("opacity-70", "cursor-not-allowed");
+  }
+
   (function () {
     const form = document.getElementById("newsletter-form");
     const msg = document.getElementById("form-message");
     const btn = document.getElementById("subscribe-btn");
 
-    form.addEventListener("submit", function (e) {
-      if (!form.checkValidity()) {
-        // Let the browser show its own validation message/tooltips
-        return;
-      }
+    form.addEventListener("submit", function () {
+      // If invalid, browser validation UI will appear and we do nothing else.
+      if (!form.checkValidity()) return;
 
       msg.classList.remove("hidden");
+      msg.classList.remove("text-teal-200");
       msg.classList.remove("text-red-400");
-      msg.classList.add("text-teal-200");
-      msg.textContent = "Thanks! Please check your inbox to confirm.";
+      msg.classList.add("text-gray-400");
+      msg.textContent = "Submitting...";
 
       btn.disabled = true;
       btn.classList.add("opacity-70", "cursor-not-allowed");
-
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.classList.remove("opacity-70", "cursor-not-allowed");
-      }, 4000);
     });
   })();
 </script>
+
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+<script>
+  // From your original embed snippet (keep it)
+  fetch("https://assets.mailerlite.com/jsonp/1506447/forms/178479505361339587/takel");
+</script>
+
 
   <div id="purchase-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background: rgba(0, 0, 0, 0.8);">
    <div class="card-glow rounded-2xl p-8 max-w-md w-full relative" style="background: linear-gradient(180deg, #1e1e2f 0%, #151520 100%);">
